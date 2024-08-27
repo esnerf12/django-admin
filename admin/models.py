@@ -25,6 +25,7 @@ class Articulo(models.Model):
     placa = models.CharField(max_length=255)
     codigo_bn = models.CharField(max_length=255)
     cantidad = models.IntegerField()
+    tipo_articulo = models.ForeignKey(TipoArticulo, on_delete=models.CASCADE)
     condicion = models.ForeignKey(Condicion, on_delete=models.CASCADE)
     fecha_adq = models.DateField()
     asignado = models.BooleanField(default=False)
