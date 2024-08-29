@@ -19,11 +19,11 @@ class TipoArticulo(models.Model):
 
 class Articulo(models.Model):
     descripcion = models.TextField(max_length=255)
-    marca = models.CharField(max_length=255)
-    modelo = models.CharField(max_length=255)
-    serial = models.CharField(max_length=255)
-    placa = models.CharField(max_length=255)
-    codigo_bn = models.CharField(max_length=255)
+    marca = models.CharField(max_length=255, blank=True, null=True)
+    modelo = models.CharField(max_length=255, blank=True, null=True)
+    serial = models.CharField(max_length=255, blank=True, null=True)
+    placa = models.CharField(max_length=255, blank=True, null=True)
+    codigo_bn = models.CharField(max_length=255, blank=True, null=True)
     cantidad = models.IntegerField()
     tipo_articulo = models.ForeignKey(TipoArticulo, on_delete=models.CASCADE)
     condicion = models.ForeignKey(Condicion, on_delete=models.CASCADE)
@@ -69,11 +69,11 @@ class Asignacion(models.Model):
 
 class Compra(models.Model):
     descripcion = models.TextField(max_length=255)
-    marca = models.CharField(max_length=255)
-    modelo = models.CharField(max_length=255)
-    serial = models.CharField(max_length=255)
-    placa = models.CharField(max_length=255)
-    codigo_bn = models.CharField(max_length=255)
+    marca = models.CharField(max_length=255, blank=True, null=True)
+    modelo = models.CharField(max_length=255, blank=True, null=True)
+    serial = models.CharField(max_length=255, blank=True, null=True)
+    placa = models.CharField(max_length=255, blank=True, null=True)
+    codigo_bn = models.CharField(max_length=255, blank=True, null=True)
     n_orden = models.IntegerField()
     valor_bs = models.IntegerField()
     cantidad = models.IntegerField()
