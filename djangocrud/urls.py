@@ -21,4 +21,8 @@ from administracion import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inicio, name='inicio'),
+    path('bienes/tecnologia', views.tecnologia, name='tecnologia'),
+    path('bienes/tecnologia/create/', views.create_tecnologia, name='create_tecnologia'),
+    path('bienes/tecnologia/<int:emergency_id>/', views.update_tecnologia, name='update_tecnologia'),
+    path('bienes/tecnologia/<int:emergency_id>/delete', views.delete_tecnologia, name='delete_tecnologia'),
 ]
