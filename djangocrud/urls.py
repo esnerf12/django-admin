@@ -37,4 +37,8 @@ urlpatterns = [
     path('bienes/vehiculo/create/', views.create_vehiculo, name='create_vehiculo'),
     path('bienes/vehiculo/<int:vehiculo_id>/', views.update_vehiculo, name='update_vehiculo'),
     path('bienes/vehiculo/<int:vehiculo_id>/delete', views.delete_vehiculo, name='delete_vehiculo'),
+    path('bienes/averia', views.averia, name='averia'),
+    path('bienes/averia/create/', views.create_averia, name='create_averia'),
+    path('bienes/averia/<int:averia_id>/', views.update_averia, name='update_averia'),
+    path('bienes/averia/<int:averia_id>/delete', views.delete_averia, name='delete_averia'),
 ]

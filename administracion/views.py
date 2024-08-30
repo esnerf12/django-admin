@@ -242,3 +242,60 @@ def delete_vehiculo(request, vehiculo_id):
         return redirect('vehiculo')
     
 # Reporte de Averia
+def averia(request):
+    averia = Averia.objects.filter()
+    paginator = Paginator(averia, 10)  # Show 10 per page.
+
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'averia.html', {
+        'averia': paginator.page(page_number),
+        'page_obj': page_obj
+    })
+
+def create_averia(request):
+    if request.method == 'GET':
+        return render(request, 'create_averia.html', {
+            'form': AveriaForm
+        })
+    else:
+        try:
+            form = AveriaForm(request.POST)
+            new_averia = form.save(commit=False)
+            new_averia.user = request.user
+            new_averia.save()
+            return redirect('averia')
+        except ValueError:
+            return render(request, 'create_averia.html', {
+                'form': AveriaForm,
+                'error': 'Please provide valid data'
+            })
+        
+def update_averia(request, averia_id):
+    if request.method == 'GET':
+        averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+        form = AveriaForm(instance=averia)
+        return render(request, 'update_averia.html', {
+            'averia': averia,
+            'form': form
+        })
+    else:
+        try:
+            averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+            form = AveriaForm(request.POST, instance=averia)
+            form.save()
+            return redirect('averia')
+        except ValueError:
+            return render(request, 'update_averia.html', {
+                'averia': averia,
+                'form': form,
+                'error': 'Error updating averia'
+            })
+        
+def delete_averia(request, averia_id):
+    averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+    if request.method == 'POST':
+        averia.delete()
+        return redirect('averia')
+    
+# Compra
