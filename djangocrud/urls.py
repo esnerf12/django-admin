@@ -41,4 +41,8 @@ urlpatterns = [
     path('bienes/averia/create/', views.create_averia, name='create_averia'),
     path('bienes/averia/<int:averia_id>/', views.update_averia, name='update_averia'),
     path('bienes/averia/<int:averia_id>/delete', views.delete_averia, name='delete_averia'),
+    path('bienes/compra', views.compra, name='compra'),
+    path('bienes/compra/create/', views.create_compra, name='create_compra'),
+    path('bienes/compra/<int:compra_id>/', views.update_compra, name='update_compra'),
+    path('bienes/compra/<int:compra_id>/delete', views.delete_compra, name='delete_compra'),
 ]

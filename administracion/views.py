@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Articulo, Averia, Compra, Asignacion
-from .forms import TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
+from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -299,3 +299,65 @@ def delete_averia(request, averia_id):
         return redirect('averia')
     
 # Compra
+def compra(request):
+    compra = Compra.objects.filter()
+    paginator = Paginator(compra, 10)  # Show 10 per page.
+
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'compra.html', {
+        'compra': paginator.page(page_number),
+        'page_obj': page_obj
+    })
+
+def create_compra(request):
+    if request.method == 'GET':
+        return render(request, 'create_compra.html', {
+            'form_articulo': ArticuloForm,
+            'form_compra': CompraForm,
+        })
+    else:
+        try:
+            form_articulo = ArticuloForm(request.POST)
+            form_compra = CompraForm(request.POST)
+            new_articulo = form_articulo.save(commit=False)
+            new_articulo.user = request.user
+            new_articulo.save()
+            new_compra = form_compra.save(commit=False)
+            new_compra.articulo_id = new_articulo.id
+            new_compra.user = request.user
+            new_compra.save()
+            return redirect('compra')
+        except ValueError:
+            return render(request, 'create_compra.html', {
+                'form_articulo': ArticuloForm,
+                'form_compra': CompraForm,
+                'error': 'Please provide valid data'
+            })
+        
+def update_compra(request, compra_id):
+    if request.method == 'GET':
+        compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+        form = CompraForm(instance=compra)
+        return render(request, 'update_compra.html', {
+            'compra': compra,
+            'form': form
+        })
+    else:
+        try:
+            compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+            form = CompraForm(request.POST, instance=compra)
+            form.save()
+            return redirect('compra')
+        except ValueError:
+            return render(request, 'update_compra.html', {
+                'compra': compra,
+                'form': form,
+                'error': 'Error updating compra'
+            })
+        
+def delete_compra(request, compra_id):
+    compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+    if request.method == 'POST':
+        compra.delete()
+        return redirect('compra')

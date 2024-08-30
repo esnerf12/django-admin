@@ -68,16 +68,8 @@ class Asignacion(models.Model):
     observaciones = models.TextField(max_length=255)
 
 class Compra(models.Model):
-    descripcion = models.TextField(max_length=255)
-    marca = models.CharField(max_length=255, blank=True, null=True)
-    modelo = models.CharField(max_length=255, blank=True, null=True)
-    serial = models.CharField(max_length=255, blank=True, null=True)
-    placa = models.CharField(max_length=255, blank=True, null=True)
-    codigo_bn = models.CharField(max_length=255, blank=True, null=True)
+    articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     n_orden = models.IntegerField()
     valor_bs = models.IntegerField()
-    cantidad = models.IntegerField()
-    fecha_adq = models.DateField()
-    tipo_articulo = models.ForeignKey(TipoArticulo, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)

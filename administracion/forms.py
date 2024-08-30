@@ -1,6 +1,12 @@
 from django import forms
 from .models import Articulo, Averia, Asignacion, Compra
 
+class ArticuloForm(forms.ModelForm):
+    class Meta:
+        model = Articulo
+        fields = ['descripcion', 'marca', 'modelo', 'serial', 'codigo_bn', 'cantidad', 'condicion', 'fecha_adq', 'tipo_articulo']
+        widgets = {}
+
 class TecnologiaForm(forms.ModelForm):
     class Meta:
         model = Articulo
@@ -34,7 +40,7 @@ class AveriaForm(forms.ModelForm):
 class CompraForm(forms.ModelForm):
     class Meta:
         model = Compra
-        fields = ['descripcion', 'marca', 'modelo', 'serial', 'placa', 'codigo_bn', 'n_orden', 'valor_bs', 'cantidad', 'fecha_adq', 'tipo_articulo']
+        fields = ['n_orden', 'valor_bs']
         widgets = {}
         
 class AsignacionForm(forms.ModelForm):
