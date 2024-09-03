@@ -45,4 +45,7 @@ urlpatterns = [
     path('bienes/compra/create/', views.create_compra, name='create_compra'),
     path('bienes/compra/<int:compra_id>/', views.update_compra, name='update_compra'),
     path('bienes/compra/<int:compra_id>/delete', views.delete_compra, name='delete_compra'),
+    path('bienes/asignacion', views.asignacion, name='asignacion'),
+    path('bienes/asignacion/create/', views.create_asignacion, name='create_asignacion'),
+    path('bienes/asignacion/<int:asignacion_id>/delete', views.delete_asignacion, name='delete_asignacion'),
 ]
