@@ -16,14 +16,14 @@ def tecnologia(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'tecnologia.html', {
+    return render(request, 'tecnologia/tecnologia.html', {
         'tecnologia': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_tecnologia(request):
     if request.method == 'GET':
-        return render(request, 'create_tecnologia.html', {
+        return render(request, 'tecnologia/create_tecnologia.html', {
             'form': TecnologiaForm
         })
     else:
@@ -35,7 +35,7 @@ def create_tecnologia(request):
             new_tecnologia.save()
             return redirect('tecnologia')
         except ValueError:
-            return render(request, 'create_tecnologia.html', {
+            return render(request, 'tecnologia/create_tecnologia.html', {
                 'form': TecnologiaForm,
                 'error': 'Please provide valid data'
             })
@@ -44,7 +44,7 @@ def update_tecnologia(request, tecnologia_id):
     if request.method == 'GET':
         tecnologia = get_object_or_404(Articulo, pk=tecnologia_id, user=request.user)
         form = TecnologiaForm(instance=tecnologia)
-        return render(request, 'update_tecnologia.html', {
+        return render(request, 'tecnologia/update_tecnologia.html', {
             'tecnologia': tecnologia,
             'form': form
         })
@@ -55,7 +55,7 @@ def update_tecnologia(request, tecnologia_id):
             form.save()
             return redirect('tecnologia')
         except ValueError:
-            return render(request, 'update_tecnologia.html', {
+            return render(request, 'tecnologia/update_tecnologia.html', {
                 'tecnologia': tecnologia,
                 'form': form,
                 'error': 'Error updating tecnologia'
@@ -74,14 +74,14 @@ def consumible(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'consumible.html', {
+    return render(request, 'consumible/consumible.html', {
         'consumible': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_consumible(request):
     if request.method == 'GET':
-        return render(request, 'create_consumible.html', {
+        return render(request, 'consumible/create_consumible.html', {
             'form': ConsumibleForm
         })
     else:
@@ -93,7 +93,7 @@ def create_consumible(request):
             new_consumible.save()
             return redirect('consumible')
         except ValueError:
-            return render(request, 'create_consumible.html', {
+            return render(request, 'consumible/create_consumible.html', {
                 'form': ConsumibleForm,
                 'error': 'Please provide valid data'
             })
@@ -102,7 +102,7 @@ def update_consumible(request, consumible_id):
     if request.method == 'GET':
         consumible = get_object_or_404(Articulo, pk=consumible_id, user=request.user)
         form = ConsumibleForm(instance=consumible)
-        return render(request, 'update_consumible.html', {
+        return render(request, 'consumible/update_consumible.html', {
             'consumible': consumible,
             'form': form
         })
@@ -113,7 +113,7 @@ def update_consumible(request, consumible_id):
             form.save()
             return redirect('consumible')
         except ValueError:
-            return render(request, 'update_consumible.html', {
+            return render(request, 'consumible/update_consumible.html', {
                 'consumible': consumible,
                 'form': form,
                 'error': 'Error updating consumible'
@@ -132,14 +132,14 @@ def mobiliario(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'mobiliario.html', {
+    return render(request, 'mobiliario/mobiliario.html', {
         'mobiliario': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_mobiliario(request):
     if request.method == 'GET':
-        return render(request, 'create_mobiliario.html', {
+        return render(request, 'mobiliario/create_mobiliario.html', {
             'form': MobiliarioForm
         })
     else:
@@ -151,7 +151,7 @@ def create_mobiliario(request):
             new_mobiliario.save()
             return redirect('mobiliario')
         except ValueError:
-            return render(request, 'create_mobiliario.html', {
+            return render(request, 'mobiliario/create_mobiliario.html', {
                 'form': MobiliarioForm,
                 'error': 'Please provide valid data'
             })
@@ -160,7 +160,7 @@ def update_mobiliario(request, mobiliario_id):
     if request.method == 'GET':
         mobiliario = get_object_or_404(Articulo, pk=mobiliario_id, user=request.user)
         form = MobiliarioForm(instance=mobiliario)
-        return render(request, 'update_mobiliario.html', {
+        return render(request, 'mobiliario/update_mobiliario.html', {
             'mobiliario': mobiliario,
             'form': form
         })
@@ -171,7 +171,7 @@ def update_mobiliario(request, mobiliario_id):
             form.save()
             return redirect('mobiliario')
         except ValueError:
-            return render(request, 'update_mobiliario.html', {
+            return render(request, 'mobiliario/update_mobiliario.html', {
                 'mobiliario': mobiliario,
                 'form': form,
                 'error': 'Error updating mobiliario'
@@ -190,14 +190,14 @@ def vehiculo(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'vehiculo.html', {
+    return render(request, 'vehiculo/vehiculo.html', {
         'vehiculo': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_vehiculo(request):
     if request.method == 'GET':
-        return render(request, 'create_vehiculo.html', {
+        return render(request, 'vehiculo/create_vehiculo.html', {
             'form': VehiculoForm
         })
     else:
@@ -209,7 +209,7 @@ def create_vehiculo(request):
             new_vehiculo.save()
             return redirect('vehiculo')
         except ValueError:
-            return render(request, 'create_vehiculo.html', {
+            return render(request, 'vehiculo/create_vehiculo.html', {
                 'form': VehiculoForm,
                 'error': 'Please provide valid data'
             })
@@ -218,7 +218,7 @@ def update_vehiculo(request, vehiculo_id):
     if request.method == 'GET':
         vehiculo = get_object_or_404(Articulo, pk=vehiculo_id, user=request.user)
         form = VehiculoForm(instance=vehiculo)
-        return render(request, 'update_vehiculo.html', {
+        return render(request, 'vehiculo/update_vehiculo.html', {
             'vehiculo': vehiculo,
             'form': form
         })
@@ -229,7 +229,7 @@ def update_vehiculo(request, vehiculo_id):
             form.save()
             return redirect('vehiculo')
         except ValueError:
-            return render(request, 'update_vehiculo.html', {
+            return render(request, 'vehiculo/update_vehiculo.html', {
                 'vehiculo': vehiculo,
                 'form': form,
                 'error': 'Error updating vehiculo'
@@ -248,14 +248,14 @@ def averia(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'averia.html', {
+    return render(request, 'averia/averia.html', {
         'averia': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_averia(request):
     if request.method == 'GET':
-        return render(request, 'create_averia.html', {
+        return render(request, 'averia/create_averia.html', {
             'form': AveriaForm
         })
     else:
@@ -266,7 +266,7 @@ def create_averia(request):
             new_averia.save()
             return redirect('averia')
         except ValueError:
-            return render(request, 'create_averia.html', {
+            return render(request, 'averia/create_averia.html', {
                 'form': AveriaForm,
                 'error': 'Please provide valid data'
             })
@@ -275,7 +275,7 @@ def update_averia(request, averia_id):
     if request.method == 'GET':
         averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
         form = AveriaForm(instance=averia)
-        return render(request, 'update_averia.html', {
+        return render(request, 'averia/update_averia.html', {
             'averia': averia,
             'form': form
         })
@@ -286,7 +286,7 @@ def update_averia(request, averia_id):
             form.save()
             return redirect('averia')
         except ValueError:
-            return render(request, 'update_averia.html', {
+            return render(request, 'averia/update_averia.html', {
                 'averia': averia,
                 'form': form,
                 'error': 'Error updating averia'
@@ -305,14 +305,14 @@ def compra(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'compra.html', {
+    return render(request, 'compra/compra.html', {
         'compra': paginator.page(page_number),
         'page_obj': page_obj
     })
 
 def create_compra(request):
     if request.method == 'GET':
-        return render(request, 'create_compra.html', {
+        return render(request, 'compra/create_compra.html', {
             'form_articulo': ArticuloForm,
             'form_compra': CompraForm,
         })
@@ -329,7 +329,7 @@ def create_compra(request):
             new_compra.save()
             return redirect('compra')
         except ValueError:
-            return render(request, 'create_compra.html', {
+            return render(request, 'compra/create_compra.html', {
                 'form_articulo': ArticuloForm,
                 'form_compra': CompraForm,
                 'error': 'Please provide valid data'
@@ -339,7 +339,7 @@ def update_compra(request, compra_id):
     if request.method == 'GET':
         compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
         form = CompraForm(instance=compra)
-        return render(request, 'update_compra.html', {
+        return render(request, 'compra/update_compra.html', {
             'compra': compra,
             'form': form
         })
@@ -350,7 +350,7 @@ def update_compra(request, compra_id):
             form.save()
             return redirect('compra')
         except ValueError:
-            return render(request, 'update_compra.html', {
+            return render(request, 'compra/update_compra.html', {
                 'compra': compra,
                 'form': form,
                 'error': 'Error updating compra'
@@ -369,14 +369,14 @@ def asignacion(request):
 
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
-    return render(request, 'asignacion.html', {
+    return render(request, 'asignacion/asignacion.html', {
         'asignacion': paginator.page(page_number),
         'page_obj': page_obj
     })
     
 def create_asignacion(request):
     if request.method == 'GET':
-        return render(request, 'create_asignacion.html', {
+        return render(request, 'asignacion/create_asignacion.html', {
             'form': AsignacionForm,
         })
     else:
@@ -391,7 +391,7 @@ def create_asignacion(request):
             form_articulo.save()
             return redirect('asignacion')
         except ValueError:
-            return render(request, 'create_asignacion.html', {
+            return render(request, 'asignacion/create_asignacion.html', {
                 'form': ArticuloForm,
                 'error': 'Please provide valid data'
             })
