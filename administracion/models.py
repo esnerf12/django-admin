@@ -56,6 +56,7 @@ class Averia(models.Model):
     ubicacion = models.TextField(max_length=255)
     serial = models.CharField(max_length=255)
     codigo_bn = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.problema
@@ -66,6 +67,7 @@ class Asignacion(models.Model):
     cantidad = models.IntegerField()
     descripcion = models.TextField(max_length=255)
     observaciones = models.TextField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Compra(models.Model):
     articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
