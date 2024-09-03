@@ -361,3 +361,43 @@ def delete_compra(request, compra_id):
     if request.method == 'POST':
         compra.delete()
         return redirect('compra')
+
+# Asignacion
+def asignacion(request):
+    asignacion = Asignacion.objects.filter()
+    paginator = Paginator(asignacion, 10)  # Show 10 per page.
+
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'asignacion.html', {
+        'asignacion': paginator.page(page_number),
+        'page_obj': page_obj
+    })
+    
+def create_asignacion(request):
+    if request.method == 'GET':
+        return render(request, 'create_asignacion.html', {
+            'form': AsignacionForm,
+        })
+    else:
+        try:
+            articulo = get_object_or_404(Articulo, pk=request.articulo_id)
+            form_asignacion = AsignacionForm(request.POST)
+            new_asignacion = form_asignacion.save(commit=False)
+            new_asignacion.user = request.user
+            new_asignacion.save()
+            form_articulo = ArticuloForm(instance=articulo)
+            form_articulo.asignado = True
+            form_articulo.save()
+            return redirect('asignacion')
+        except ValueError:
+            return render(request, 'create_asignacion.html', {
+                'form': ArticuloForm,
+                'error': 'Please provide valid data'
+            })
+            
+def delete_asignacion(request, asignacion_id):
+    asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+    if request.method == 'POST':
+        asignacion.delete()
+        return redirect('asignacion')
