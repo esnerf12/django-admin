@@ -272,3 +272,53 @@ nav .grid-container {
         cursor: pointer;
     }
 }
+
+/* Footer */
+
+.content-footer {
+    min-width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: #222;
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px 15px;
+    }
+
+    div div:first-child {
+        display: flex;
+        gap: 20px;
+        justify-items: center;
+        align-items: center;
+    }
+
+    div div:first-child span {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #9a999e;
+        cursor: pointer;
+    }
+
+    div div:first-child span:hover {
+        transition: all ease-in-out .2s;
+        color: white;
+    }
+
+    div div:last-child {
+        display: flex;
+        gap: 20px;
+        justify-content: end;
+        align-items: center;
+    }
+
+    div div:last-child a {
+        color: #333;
+    }
+
+    div div:last-child a:hover {
+        transition: all ease-in-out .2s;
+        color: white;
+    }
+}
