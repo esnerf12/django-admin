@@ -1,4 +1,5 @@
 body {
+    background: #1c1c1c;;
     font-family: sans-serif;
     margin: 0;
 }
@@ -95,4 +96,179 @@ nav .grid-container {
         }
     }
     
+}
+
+/* Contenido */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #198754;
+    margin: 10px 40px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 3px 2px 5px #198754;
+
+    .content-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-buttons div {
+        display: flex;
+    }
+
+    .content-buttons div:last-child {
+        justify-content: end;
+    }
+
+    .content-buttons div a {
+        display: flex;
+        gap: 10px;
+        padding: 10px 20px;
+        border: 1px solid #002c17;
+        background: #198754;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content-buttons a:last-child {
+        display: flex;
+        justify-content: end;
+    }
+
+    .content-search {
+        display: flex;
+        justify-content: end;
+    }
+
+    .content-search form {
+        display: flex;
+        gap: 0;
+        background: #333;
+        border: 2px solid #198754;;
+        border-radius: 10px;
+    }
+
+    .content-search form input {
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        background: #333;
+    }
+
+    .content-search form svg {
+        padding: 10px 15px;
+        color: white;
+    }
+
+    .content-table thead tr {
+        background: #333;
+        color: white;
+    }
+
+    .content-table thead tr th {
+        padding: 10px;
+    }
+
+    .pagination {
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+    }
+}
+
+/* Formulario */
+.content-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #198754;
+    margin: 10px 40px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 3px 2px 5px #198754;
+
+    div form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    div form h1 {
+        border-bottom: 3px solid #198754;
+        margin: 0;
+        color: white;
+    }
+
+    div form .form-control {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    div form .form-control div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    div form .form-control label {
+        display: block;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    div form .form-control input {
+        font-size: 1rem;
+        background: #333;
+        border: 2px solid #198754;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    div form .form-control select {
+        font-size: 1rem;
+        background: #333;
+        border: 2px solid #198754;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    div form .form-control textarea {
+        height: 70px;
+        font-size: 1rem;
+        background: #333;
+        border: 2px solid #198754;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    div form .div-button {
+        display: flex;
+        justify-content: center;
+    }
+
+    div form .div-button button {
+        width: fit-content;
+        background: #198754;
+        border: 1px solid #002c17;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 15px 70px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 }
