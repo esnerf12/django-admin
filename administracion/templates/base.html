@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
   </head>
   <body>
+    <div class="cintillo">
+      <img src="{% static 'img/cintillo.jpeg' %}" alt="cintillo">
+    </div>
     <nav>
       <div class="grid-container">
         <div>
           <a class="navbar-brand" href="#">
-            <img src="https://images.squarespace-cdn.com/content/v1/5e0849d5b75e913537ba6e4b/1580072657793-FQHY1078YO7V1B6O3A5C/Target%2BLogo%2B_%2BPictorial%2BLogo%2BExample%2B_%2BMill%2BCreek%2BCreative.png" alt="logo">
+            <img src="{% static 'img/logo.png' %}" alt="logo">
             <span>S.U.C.I Ven9-1-1</span>
           </a>
         </div>
@@ -22,12 +25,18 @@
               <a href="/">Inicio</a>
             </li>
             <li>
-              <a>
+              <a id="btn">
                 <span>Bienes Nacionales</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                   <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                 </svg>
               </a>
+              <div class="hidden-content" id="btn-content">
+                <a href="{% url 'tecnologia' %}">Tecnología</a>
+                <a href="{% url 'consumible' %}">Consumible</a>
+                <a href="{% url 'mobiliario' %}">Mobiliario</a>
+                <a href="{% url 'vehiculo' %}">Vehículo</a>
+              </div>
             </li>
             <li>
               <a href="{% url 'averia' %}">Reporte Avería</a>
@@ -87,5 +96,18 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const btn = document.getElementById('btn')
+      const btn_content = document.getElementById('btn-content')
+
+      btn.addEventListener('click', () => {
+        if (btn_content.classList.contains('hidden-content')) {
+          btn_content.classList.remove('hidden-content')
+        } else {
+          btn_content.classList.add('hidden-content')
+        }
+      })
+    </script>
   </body>
 </html>

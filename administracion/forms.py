@@ -16,7 +16,9 @@ class ArticuloForm(forms.ModelForm):
                     'fecha_adq': 'Fecha de adquisición',
                     'tipo_articulo': 'Tipo de artículo',
         }
-        widgets = {}
+        widgets = {
+            'fecha_adq': forms.DateInput(format=('%Y-%m-%d'), attrs={'placeholder': 'Selecciona una fecha', 'type': 'date'}),
+        }
 
 class TecnologiaForm(forms.ModelForm):
     class Meta:
@@ -32,7 +34,9 @@ class TecnologiaForm(forms.ModelForm):
                     'condicion': 'Condición',
                     'fecha_adq': 'Fecha de adquisición',
         }
-        widgets = {}
+        widgets = {
+            'fecha_adq': forms.DateInput(format=('%Y-%m-%d'), attrs={'placeholder': 'Selecciona una fecha', 'type': 'date'}),
+        }
         
 class ConsumibleForm(forms.ModelForm):
     class Meta:
@@ -45,7 +49,9 @@ class ConsumibleForm(forms.ModelForm):
                     'cantidad': 'Cantidad',
                     'fecha_adq': 'Fecha de adquisición',
         }
-        widgets = {}
+        widgets = {
+            'fecha_adq': forms.DateInput(format=('%Y-%m-%d'), attrs={'placeholder': 'Selecciona una fecha', 'type': 'date'}),
+        }
         
 class MobiliarioForm(forms.ModelForm):
     class Meta:
@@ -59,7 +65,9 @@ class MobiliarioForm(forms.ModelForm):
                     'condicion': 'Condición',
                     'fecha_adq': 'Fecha de adquisición',
         }
-        widgets = {}
+        widgets = {
+            'fecha_adq': forms.DateInput(format=('%Y-%m-%d'), attrs={'placeholder': 'Selecciona una fecha', 'type': 'date'}),
+        }
         
 class VehiculoForm(forms.ModelForm):
     class Meta:
@@ -75,7 +83,9 @@ class VehiculoForm(forms.ModelForm):
                     'condicion': 'Condición',
                     'fecha_adq': 'Fecha de adquisición',
         }
-        widgets = {}
+        widgets = {
+            'fecha_adq': forms.DateInput(format=('%Y-%m-%d'), attrs={'placeholder': 'Selecciona una fecha', 'type': 'date'}),
+        }
         
 class AveriaForm(forms.ModelForm):
     class Meta:
