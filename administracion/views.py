@@ -90,6 +90,7 @@ def create_consumible(request):
             new_consumible = form.save(commit=False)
             new_consumible.user = request.user
             new_consumible.tipo_articulo_id = 2
+            new_consumible.condicion_id = 1
             new_consumible.save()
             return redirect('consumible')
         except ValueError:
