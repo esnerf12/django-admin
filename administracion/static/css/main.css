@@ -113,6 +113,7 @@ nav .grid-container {
         }
 
         .hidden-content {
+            display: none;
             opacity: 0;
         }
     }

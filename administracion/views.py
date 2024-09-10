@@ -42,7 +42,7 @@ def create_tecnologia(request):
 
 def update_tecnologia(request, tecnologia_id):
     if request.method == 'GET':
-        tecnologia = get_object_or_404(Articulo, pk=tecnologia_id, user=request.user)
+        tecnologia = get_object_or_404(Articulo, pk=tecnologia_id)
         form = TecnologiaForm(instance=tecnologia)
         return render(request, 'tecnologia/update_tecnologia.html', {
             'tecnologia': tecnologia,
@@ -50,7 +50,7 @@ def update_tecnologia(request, tecnologia_id):
         })
     else:
         try:
-            tecnologia = get_object_or_404(Articulo, pk=tecnologia_id, user=request.user)
+            tecnologia = get_object_or_404(Articulo, pk=tecnologia_id)
             form = TecnologiaForm(request.POST, instance=tecnologia)
             form.save()
             return redirect('tecnologia')
@@ -62,7 +62,7 @@ def update_tecnologia(request, tecnologia_id):
             })
 
 def delete_tecnologia(request, tecnologia_id):
-    tecnologia = get_object_or_404(Articulo, pk=tecnologia_id, user=request.user)
+    tecnologia = get_object_or_404(Articulo, pk=tecnologia_id)
     if request.method == 'POST':
         tecnologia.delete()
         return redirect('tecnologia') 
@@ -382,18 +382,17 @@ def create_asignacion(request):
         })
     else:
         try:
-            articulo = get_object_or_404(Articulo, pk=request.articulo_id)
             form_asignacion = AsignacionForm(request.POST)
             new_asignacion = form_asignacion.save(commit=False)
             new_asignacion.user = request.user
             new_asignacion.save()
-            form_articulo = ArticuloForm(instance=articulo)
-            form_articulo.asignado = True
-            form_articulo.save()
+            articulo = get_object_or_404(Articulo, pk=new_asignacion.articulo_id)
+            articulo.asignado = True
+            articulo.save()
             return redirect('asignacion')
         except ValueError:
             return render(request, 'asignacion/create_asignacion.html', {
-                'form': ArticuloForm,
+                'form': AsignacionForm,
                 'error': 'Please provide valid data'
             })
             
