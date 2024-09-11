@@ -28,12 +28,12 @@
             <form action="{% url 'search_asignacion' %}" method="GET">
                 {% csrf_token %}
                 <select name="option" id="option">
-                    <!-- <option value="articulo">Artículo</option>
-                    <option value="departamento">Departamento</option> -->
+                    <option value="articulo">Artículo</option>
+                    <option value="departamento">Departamento</option>
                     <option value="cantidad">Cantidad</option>
                     <option value="descripcion">Descripción</option>
                     <option value="observaciones">Observaciones</option>
-                    <!-- <option value="user">Creado por</option> -->
+                    <option value="user">Creado por</option>
                 </select>
                 <input name="q" type="search" placeholder="Buscar..." aria-label="Search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

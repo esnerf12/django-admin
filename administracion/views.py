@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Articulo, Averia, Compra, Asignacion, Condicion, TipoArticulo, TipoAveria, Departamento
 from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.views.generic import ListView
 
@@ -424,12 +425,19 @@ class SearchTecnologia(ListView):
         if option == 'cantidad':
             return Articulo.objects.filter(tipo_articulo=1, cantidad__icontains=query, user=self.request.user)
         if option == 'condicion':
-            condicion = Condicion.objects.get(nombre__icontains=query)
-            return Articulo.objects.filter(tipo_articulo=1, condicion=condicion.id, user=self.request.user)
+            try:
+                condicion = Condicion.objects.get(nombre__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, condicion=condicion.id, user=self.request.user)
+            except Condicion.DoesNotExist:
+                condicion = None
         if option == 'fecha_adq':
             return Articulo.objects.filter(tipo_articulo=1, fecha_adq__icontains=query, user=self.request.user)
-        #if option == 'fecha_adq':
-            #return Articulo.objects.filter(tipo_articulo=1, fecha_adq__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchConsumible(ListView):
     model = Articulo
@@ -447,12 +455,14 @@ class SearchConsumible(ListView):
             return Articulo.objects.filter(tipo_articulo=2, serial__icontains=query, user=self.request.user)
         if option == 'cantidad':
             return Articulo.objects.filter(tipo_articulo=2, cantidad__icontains=query, user=self.request.user)
-        #if option == 'condicion':
-            #return Articulo.objects.filter(tipo_articulo=2, condicion__icontains=query, user=self.request.user)
         if option == 'fecha_adq':
             return Articulo.objects.filter(tipo_articulo=2, fecha_adq__icontains=query, user=self.request.user)
-        #if option == 'fecha_adq':
-            #return Articulo.objects.filter(tipo_articulo=2, fecha_adq__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchMobiliario(ListView):
     model = Articulo
@@ -470,12 +480,20 @@ class SearchMobiliario(ListView):
             return Articulo.objects.filter(tipo_articulo=3, codigo_bn__icontains=query, user=self.request.user)
         if option == 'cantidad':
             return Articulo.objects.filter(tipo_articulo=3, cantidad__icontains=query, user=self.request.user)
-        #if option == 'condicion':
-            #return Articulo.objects.filter(tipo_articulo=3, condicion__icontains=query, user=self.request.user)
+        if option == 'condicion':
+            try:
+                condicion = Condicion.objects.get(nombre__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, condicion=condicion.id, user=self.request.user)
+            except Condicion.DoesNotExist:
+                condicion = None
         if option == 'fecha_adq':
             return Articulo.objects.filter(tipo_articulo=3, fecha_adq__icontains=query, user=self.request.user)
-        #if option == 'fecha_adq':
-            #return Articulo.objects.filter(tipo_articulo=3, fecha_adq__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchVehiculo(ListView):
     model = Articulo
@@ -497,12 +515,20 @@ class SearchVehiculo(ListView):
             return Articulo.objects.filter(tipo_articulo=4, placa__icontains=query, user=self.request.user)
         if option == 'cantidad':
             return Articulo.objects.filter(tipo_articulo=4, cantidad__icontains=query, user=self.request.user)
-        #if option == 'condicion':
-            #return Articulo.objects.filter(tipo_articulo=4, condicion__icontains=query, user=self.request.user)
+        if option == 'condicion':
+            try:
+                condicion = Condicion.objects.get(nombre__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, condicion=condicion.id, user=self.request.user)
+            except Condicion.DoesNotExist:
+                condicion = None
         if option == 'fecha_adq':
             return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)
-        #if option == 'fecha_adq':
-            #return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchAsignacion(ListView):
     model = Asignacion
@@ -512,18 +538,32 @@ class SearchAsignacion(ListView):
     def get_queryset(self):
         option = self.request.GET.get('option')
         query = self.request.GET.get('q')
-        #if option == 'articulo':
-            #return Asignacion.objects.filter(articulo__icontains=query, user=self.request.user)
-        #if option == 'departamento':
-            #return Asignacion.objects.filter(departamento__icontains=query, user=self.request.user)
+        # Verificar
+        if option == 'articulo':
+            try:
+                articulo = Articulo.objects.filter(descripcion__icontains=query, asignado=True).values_list('id', flat=True).first()
+                return Asignacion.objects.filter(articulo=articulo, user=self.request.user)
+            except Articulo.DoesNotExist:
+                articulo = None
+        # -----
+        if option == 'departamento':
+            try:
+                departamento = Departamento.objects.get(nombre__icontains=query)
+                return Asignacion.objects.filter(departamento=departamento.id, user=self.request.user)
+            except Departamento.DoesNotExist:
+                departamento = None
         if option == 'cantidad':
             return Asignacion.objects.filter(cantidad__icontains=query, user=self.request.user)
         if option == 'descripcion':
             return Asignacion.objects.filter(descripcion__icontains=query, user=self.request.user)
         if option == 'observaciones':
             return Asignacion.objects.filter(observaciones__icontains=query, user=self.request.user)
-        #if option == 'user':
-            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchAveria(ListView):
     model = Averia
@@ -535,18 +575,30 @@ class SearchAveria(ListView):
         query = self.request.GET.get('q')
         if option == 'problema':
             return Averia.objects.filter(problema__icontains=query, user=self.request.user)
-        #if option == 'tipo_averia':
-            #return Averia.objects.filter(tipo_averia__icontains=query, user=self.request.user)
-        #if option == 'departamento':
-            #return Averia.objects.filter(departamento__icontains=query, user=self.request.user)
+        if option == 'tipo_averia':
+            try:
+                tipo_averia = TipoAveria.objects.get(nombre__icontains=query)
+                return Averia.objects.filter(tipo_averia=tipo_averia.id, user=self.request.user)
+            except TipoAveria.DoesNotExist:
+                tipo_averia = None
+        if option == 'departamento':
+            try:
+                departamento = Departamento.objects.get(nombre__icontains=query)
+                return Asignacion.objects.filter(departamento=departamento.id, user=self.request.user)
+            except Departamento.DoesNotExist:
+                departamento = None
         if option == 'ubicacion':
             return Averia.objects.filter(ubicacion__icontains=query, user=self.request.user)
         if option == 'serial':
             return Averia.objects.filter(serial__icontains=query, user=self.request.user)
         if option == 'codigo_bn':
             return Averia.objects.filter(codigo_bn__icontains=query, user=self.request.user)
-        #if option == 'user':
-            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None
             
 class SearchCompra(ListView):
     model = Compra
@@ -562,5 +614,9 @@ class SearchCompra(ListView):
             return Compra.objects.filter(n_orden__icontains=query, user=self.request.user)
         if option == 'valor_bs':
             return Compra.objects.filter(valor_bs__icontains=query, user=self.request.user)
-        #if option == 'user':
-            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
+        if option == 'user':
+            try:
+                user = User.objects.get(username__icontains=query)
+                return Articulo.objects.filter(tipo_articulo=1, user=user.id)
+            except User.DoesNotExist:
+                user = None

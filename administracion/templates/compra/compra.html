@@ -27,10 +27,10 @@
             <form action="{% url 'search_compra' %}" method="GET">
                 {% csrf_token %}
                 <select name="option" id="option">
-                    <!-- <option value="articulo">Artículo</option> -->
+                    <option value="articulo">Artículo</option>
                     <option value="n_orden">N° Orden</option>
                     <option value="valor_bs">Valor BS</option>
-                    <!-- <option value="user">Creado por</option> -->
+                    <option value="user">Creado por</option>
                 </select>
                 <input name="q" type="search" placeholder="Buscar..." aria-label="Search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
