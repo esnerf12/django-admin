@@ -502,3 +502,64 @@ class SearchVehiculo(ListView):
             return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)
         #if option == 'fecha_adq':
             #return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)
+            
+class SearchAsignacion(ListView):
+    model = Asignacion
+    template_name = 'asignacion/asignacion.html'
+    context_object_name = 'asignacion'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        #if option == 'articulo':
+            #return Asignacion.objects.filter(articulo__icontains=query, user=self.request.user)
+        #if option == 'departamento':
+            #return Asignacion.objects.filter(departamento__icontains=query, user=self.request.user)
+        if option == 'cantidad':
+            return Asignacion.objects.filter(cantidad__icontains=query, user=self.request.user)
+        if option == 'descripcion':
+            return Asignacion.objects.filter(descripcion__icontains=query, user=self.request.user)
+        if option == 'observaciones':
+            return Asignacion.objects.filter(observaciones__icontains=query, user=self.request.user)
+        #if option == 'user':
+            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
+            
+class SearchAveria(ListView):
+    model = Averia
+    template_name = 'averia/averia.html'
+    context_object_name = 'averia'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        if option == 'problema':
+            return Averia.objects.filter(problema__icontains=query, user=self.request.user)
+        #if option == 'tipo_averia':
+            #return Averia.objects.filter(tipo_averia__icontains=query, user=self.request.user)
+        #if option == 'departamento':
+            #return Averia.objects.filter(departamento__icontains=query, user=self.request.user)
+        if option == 'ubicacion':
+            return Averia.objects.filter(ubicacion__icontains=query, user=self.request.user)
+        if option == 'serial':
+            return Averia.objects.filter(serial__icontains=query, user=self.request.user)
+        if option == 'codigo_bn':
+            return Averia.objects.filter(codigo_bn__icontains=query, user=self.request.user)
+        #if option == 'user':
+            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
+            
+class SearchCompra(ListView):
+    model = Compra
+    template_name = 'compra/compra.html'
+    context_object_name = 'compra'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        #if option == 'articulo':
+            #return Compra.objects.filter(articulo__icontains=query, user=self.request.user)
+        if option == 'n_orden':
+            return Compra.objects.filter(n_orden__icontains=query, user=self.request.user)
+        if option == 'valor_bs':
+            return Compra.objects.filter(valor_bs__icontains=query, user=self.request.user)
+        #if option == 'user':
+            #return Articulo.objects.filter(user__icontains=query, user=self.request.user)
