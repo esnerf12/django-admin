@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Articulo, Averia, Compra, Asignacion
+from .models import Articulo, Averia, Compra, Asignacion, Condicion, TipoArticulo, TipoAveria, Departamento
 from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
 from django.core.paginator import Paginator
 from django.views.generic import ListView
@@ -423,8 +423,9 @@ class SearchTecnologia(ListView):
             return Articulo.objects.filter(tipo_articulo=1, codigo_bn__icontains=query, user=self.request.user)
         if option == 'cantidad':
             return Articulo.objects.filter(tipo_articulo=1, cantidad__icontains=query, user=self.request.user)
-        #if option == 'condicion':
-            #return Articulo.objects.filter(tipo_articulo=1, condicion__icontains=query, user=self.request.user)
+        if option == 'condicion':
+            condicion = Condicion.objects.get(nombre__icontains=query)
+            return Articulo.objects.filter(tipo_articulo=1, condicion=condicion.id, user=self.request.user)
         if option == 'fecha_adq':
             return Articulo.objects.filter(tipo_articulo=1, fecha_adq__icontains=query, user=self.request.user)
         #if option == 'fecha_adq':
