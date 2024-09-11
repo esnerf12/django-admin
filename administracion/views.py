@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Articulo, Averia, Compra, Asignacion
 from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
 from django.core.paginator import Paginator
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -401,3 +402,103 @@ def delete_asignacion(request, asignacion_id):
     if request.method == 'POST':
         asignacion.delete()
         return redirect('asignacion')
+
+class SearchTecnologia(ListView):
+    model = Articulo
+    template_name = 'tecnologia/tecnologia.html'
+    context_object_name = 'tecnologia'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        if option == 'descripcion':
+            return Articulo.objects.filter(tipo_articulo=1, descripcion__icontains=query, user=self.request.user)
+        if option == 'marca':
+            return Articulo.objects.filter(tipo_articulo=1, marca__icontains=query, user=self.request.user)
+        if option == 'modelo':
+            return Articulo.objects.filter(tipo_articulo=1, modelo__icontains=query, user=self.request.user)
+        if option == 'serial':
+            return Articulo.objects.filter(tipo_articulo=1, serial__icontains=query, user=self.request.user)
+        if option == 'codigo_bn':
+            return Articulo.objects.filter(tipo_articulo=1, codigo_bn__icontains=query, user=self.request.user)
+        if option == 'cantidad':
+            return Articulo.objects.filter(tipo_articulo=1, cantidad__icontains=query, user=self.request.user)
+        #if option == 'condicion':
+            #return Articulo.objects.filter(tipo_articulo=1, condicion__icontains=query, user=self.request.user)
+        if option == 'fecha_adq':
+            return Articulo.objects.filter(tipo_articulo=1, fecha_adq__icontains=query, user=self.request.user)
+        #if option == 'fecha_adq':
+            #return Articulo.objects.filter(tipo_articulo=1, fecha_adq__icontains=query, user=self.request.user)
+            
+class SearchConsumible(ListView):
+    model = Articulo
+    template_name = 'consumible/consumible.html'
+    context_object_name = 'consumible'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        if option == 'descripcion':
+            return Articulo.objects.filter(tipo_articulo=2, descripcion__icontains=query, user=self.request.user)
+        if option == 'marca':
+            return Articulo.objects.filter(tipo_articulo=2, marca__icontains=query, user=self.request.user)
+        if option == 'serial':
+            return Articulo.objects.filter(tipo_articulo=2, serial__icontains=query, user=self.request.user)
+        if option == 'cantidad':
+            return Articulo.objects.filter(tipo_articulo=2, cantidad__icontains=query, user=self.request.user)
+        #if option == 'condicion':
+            #return Articulo.objects.filter(tipo_articulo=2, condicion__icontains=query, user=self.request.user)
+        if option == 'fecha_adq':
+            return Articulo.objects.filter(tipo_articulo=2, fecha_adq__icontains=query, user=self.request.user)
+        #if option == 'fecha_adq':
+            #return Articulo.objects.filter(tipo_articulo=2, fecha_adq__icontains=query, user=self.request.user)
+            
+class SearchMobiliario(ListView):
+    model = Articulo
+    template_name = 'mobiliario/mobiliario.html'
+    context_object_name = 'mobiliario'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        if option == 'descripcion':
+            return Articulo.objects.filter(tipo_articulo=3, descripcion__icontains=query, user=self.request.user)
+        if option == 'serial':
+            return Articulo.objects.filter(tipo_articulo=3, serial__icontains=query, user=self.request.user)
+        if option == 'codigo_bn':
+            return Articulo.objects.filter(tipo_articulo=3, codigo_bn__icontains=query, user=self.request.user)
+        if option == 'cantidad':
+            return Articulo.objects.filter(tipo_articulo=3, cantidad__icontains=query, user=self.request.user)
+        #if option == 'condicion':
+            #return Articulo.objects.filter(tipo_articulo=3, condicion__icontains=query, user=self.request.user)
+        if option == 'fecha_adq':
+            return Articulo.objects.filter(tipo_articulo=3, fecha_adq__icontains=query, user=self.request.user)
+        #if option == 'fecha_adq':
+            #return Articulo.objects.filter(tipo_articulo=3, fecha_adq__icontains=query, user=self.request.user)
+            
+class SearchVehiculo(ListView):
+    model = Articulo
+    template_name = 'vehiculo/vehiculo.html'
+    context_object_name = 'vehiculo'
+
+    def get_queryset(self):
+        option = self.request.GET.get('option')
+        query = self.request.GET.get('q')
+        if option == 'descripcion':
+            return Articulo.objects.filter(tipo_articulo=4, descripcion__icontains=query, user=self.request.user)
+        if option == 'marca':
+            return Articulo.objects.filter(tipo_articulo=4, marca__icontains=query, user=self.request.user)
+        if option == 'modelo':
+            return Articulo.objects.filter(tipo_articulo=4, modelo__icontains=query, user=self.request.user)
+        if option == 'codigo_bn':
+            return Articulo.objects.filter(tipo_articulo=4, codigo_bn__icontains=query, user=self.request.user)
+        if option == 'placa':
+            return Articulo.objects.filter(tipo_articulo=4, placa__icontains=query, user=self.request.user)
+        if option == 'cantidad':
+            return Articulo.objects.filter(tipo_articulo=4, cantidad__icontains=query, user=self.request.user)
+        #if option == 'condicion':
+            #return Articulo.objects.filter(tipo_articulo=4, condicion__icontains=query, user=self.request.user)
+        if option == 'fecha_adq':
+            return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)
+        #if option == 'fecha_adq':
+            #return Articulo.objects.filter(tipo_articulo=4, fecha_adq__icontains=query, user=self.request.user)

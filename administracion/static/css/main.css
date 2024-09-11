@@ -198,6 +198,15 @@ nav .grid-container {
         background: #333;
     }
 
+    .content-search form select {
+        border: none;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 8px;
+        font-size: 1rem;
+        background: #333;
+    }
+
     .content-search form svg {
         padding: 10px 15px;
         color: white;
