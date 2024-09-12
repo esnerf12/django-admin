@@ -29,6 +29,10 @@ body {
         color: #1c1c1c;
     }
 
+    .content-table tbody tr td {
+        text-align: center;
+    }
+
     .noPrint{
       display: none !important;
     }
