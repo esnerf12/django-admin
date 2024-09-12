@@ -1,7 +1,42 @@
+:root {
+    --grid-unit: 1rem;
+    --border-radius-base: 0.5rem;
+}
+
+[data-theme="light"] {
+    --color-bg: #ffffff;
+    --color-fg: #1c1c1c;
+}
+  
+  [data-theme="dark"] {
+    --color-bg: #1c1c1c;
+    --color-fg: #ffffff;
+}
+
 body {
-    background: #1c1c1c;;
-    font-family: sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
     margin: 0;
+    font-family: sans-serif;
+}
+
+@media print {
+    body {
+        color: #1c1c1c;
+    }
+
+    .content-table thead tr th {
+        color: #1c1c1c;
+    }
+
+    .noPrint{
+      display: none !important;
+    }
+    h1 {
+        display: block !important;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 /* Cintillo */
@@ -124,8 +159,14 @@ nav .grid-container {
         align-items: center;
         padding: 5px;
 
+        button {
+            background: #1c1c1c;
+            border: none;
+        }
+
         svg {
             cursor: pointer;
+            color: white;
         }
     }
     
@@ -139,6 +180,7 @@ nav .grid-container {
     gap: 20px;
     border: 2px solid #198754;
     margin: 10px 40px;
+    margin-bottom: 80px;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 3px 2px 5px #198754;
@@ -169,6 +211,7 @@ nav .grid-container {
         text-decoration: none;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
 
     .content-buttons a:last-child {
@@ -225,10 +268,6 @@ nav .grid-container {
         color: #198754;
     }
 
-    .content-table tbody tr td {
-        color: white;
-    }
-
     .content-table tbody tr td div {
         display: flex;
         justify-content: center;
@@ -268,7 +307,6 @@ nav .grid-container {
     .pagination {
         font-size: 1rem;
         font-weight: 700;
-        color: white;
     }
 }
 
@@ -293,7 +331,6 @@ nav .grid-container {
     div form h1 {
         border-bottom: 3px solid #198754;
         margin: 0;
-        color: white;
     }
 
     div form .form-control {
@@ -311,7 +348,6 @@ nav .grid-container {
     div form .form-control label {
         display: block;
         font-size: 1.2rem;
-        color: white;
     }
 
     div form .form-control input {
