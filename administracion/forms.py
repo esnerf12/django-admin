@@ -4,12 +4,14 @@ from .models import Articulo, Averia, Asignacion, Compra
 class ArticuloForm(forms.ModelForm):
     class Meta:
         model = Articulo
-        fields = ['descripcion', 'marca', 'modelo', 'serial', 'codigo_bn', 'cantidad', 'condicion', 'fecha_adq', 'tipo_articulo']
+        fields = ['descripcion', 'marca', 'modelo', 'serial', 'placa', 'cantidad_combustible', 'codigo_bn', 'cantidad', 'condicion', 'fecha_adq', 'tipo_articulo']
         labels = {
                     'descripcion': 'Descripción',
                     'marca': 'Marca',
                     'modelo': 'Modelo',
                     'serial': 'Serial',
+                    'placa': 'Placa',
+                    'cantidad_combustible': 'Cantidad de combustible máx. En litros',
                     'codigo_bn': 'Código BN',
                     'cantidad': 'Cantidad',
                     'condicion': 'Condición',
@@ -72,12 +74,13 @@ class MobiliarioForm(forms.ModelForm):
 class VehiculoForm(forms.ModelForm):
     class Meta:
         model = Articulo
-        fields = ['descripcion', 'marca', 'modelo', 'placa', 'codigo_bn', 'cantidad', 'condicion', 'fecha_adq']
+        fields = ['descripcion', 'marca', 'modelo', 'placa', 'cantidad_combustible', 'codigo_bn', 'cantidad', 'condicion', 'fecha_adq']
         labels = {
                     'descripcion': 'Descripción',
                     'marca': 'Marca',
                     'modelo': 'Modelo',
                     'placa': 'Placa',
+                    'cantidad_combustible': 'Cantidad de combustible máx. En litros',
                     'codigo_bn': 'Código BN',
                     'cantidad': 'Cantidad',
                     'condicion': 'Condición',

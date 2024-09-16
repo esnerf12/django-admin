@@ -23,6 +23,7 @@ class Articulo(models.Model):
     modelo = models.CharField(max_length=255, blank=True, null=True)
     serial = models.CharField(max_length=255, blank=True, null=True)
     placa = models.CharField(max_length=255, blank=True, null=True)
+    cantidad_combustible = models.IntegerField(blank=True, null=True)
     codigo_bn = models.CharField(max_length=255, blank=True, null=True)
     cantidad = models.IntegerField()
     tipo_articulo = models.ForeignKey(TipoArticulo, on_delete=models.CASCADE)
