@@ -176,6 +176,73 @@ nav .grid-container {
     
 }
 
+/* Inicio */
+
+.content-inicio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 30px;
+    gap: 10px;
+
+    div:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    div:first-child div {
+        padding: 30px;
+    }
+
+    div:first-child div h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        padding: 0;
+        margin: 0;
+    }
+
+    div:first-child div p {
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    div:first-child div:nth-child(2) {
+        display: flex;
+        gap: 10px;
+    }
+
+    div:first-child div:nth-child(2) button:first-child {
+        padding: 15px 30px;
+        background: #198754;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    div:first-child div:nth-child(2) button:nth-child(2) {
+        padding: 15px 30px;
+        background: #333;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .content-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .content-image img {
+        width: 600px;
+        border-radius: 10px;
+    }
+}
+
 /* Contenido */
 
 .content {
