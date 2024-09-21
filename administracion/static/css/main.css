@@ -195,6 +195,7 @@ nav .grid-container {
     grid-template-columns: repeat(2, 1fr);
     padding: 30px;
     gap: 10px;
+    margin-bottom: 40px;
 
     div:first-child {
         display: flex;
