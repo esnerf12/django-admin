@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Articulo, Averia, Compra, Asignacion, Condicion, TipoArticulo, TipoAveria, Departamento
-from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm
+from .models import Articulo, Averia, Compra, Asignacion, Condicion, TipoArticulo, TipoAveria, Departamento, Sede
+from .forms import ArticuloForm, TecnologiaForm, ConsumibleForm, MobiliarioForm, VehiculoForm, AveriaForm, CompraForm, AsignacionForm, AsignacionUpdateForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.views.generic import ListView
@@ -397,6 +397,27 @@ def create_asignacion(request):
                 'form': AsignacionForm,
                 'error': 'Please provide valid data'
             })
+
+def update_asignacion(request, asignacion_id):
+    if request.method == 'GET':
+        asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+        form = AsignacionUpdateForm(instance=asignacion)
+        return render(request, 'asignacion/update_asignacion.html', {
+            'asignacion': asignacion,
+            'form': form
+        })
+    else:
+        try:
+            asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+            form = AsignacionUpdateForm(request.POST, instance=asignacion)
+            form.save()
+            return redirect('asignacion')
+        except ValueError:
+            return render(request, 'asignacion/update_asignacion.html', {
+                'asignacion': asignacion,
+                'form': form,
+                'error': 'Error updating asignacion'
+            })
             
 def delete_asignacion(request, asignacion_id):
     asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
@@ -546,6 +567,12 @@ class SearchAsignacion(ListView):
             except Articulo.DoesNotExist:
                 articulo = None
         # -----
+        if option == 'sede':
+            try:
+                sede = Sede.objects.get(nombre__icontains=query)
+                return Asignacion.objects.filter(sede=sede.id, user=self.request.user)
+            except Sede.DoesNotExist:
+                sede = None
         if option == 'departamento':
             try:
                 departamento = Departamento.objects.get(nombre__icontains=query)

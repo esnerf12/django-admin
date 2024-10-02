@@ -117,12 +117,35 @@ class CompraForm(forms.ModelForm):
 class AsignacionForm(forms.ModelForm):
     class Meta:
         model = Asignacion
-        fields = ['articulo', 'departamento', 'cantidad', 'descripcion', 'observaciones']
+        fields = ['articulo', 'sede', 'departamento', 'cantidad', 'descripcion', 'observaciones']
         labels = {
                     'articulo': 'Artículo',
+                    'sede': 'Sede',
                     'departamento': 'Departamento',
                     'cantidad': 'Cantidad',
                     'descripcion': 'Descripción',
                     'observaciones': 'Observaciones',
         }
-        widgets = {}
+        widgets = {
+            'articulo': forms.Select(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(AsignacionForm, self).__init__(*args, **kwargs)
+        self.fields['articulo'].queryset = Articulo.objects.filter(asignado=False)
+
+class AsignacionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Asignacion
+        fields = ['articulo', 'sede', 'departamento', 'cantidad', 'descripcion', 'observaciones']
+        labels = {
+                    'articulo': 'Artículo (Solo lectura)',
+                    'sede': 'Sede',
+                    'departamento': 'Departamento',
+                    'cantidad': 'Cantidad',
+                    'descripcion': 'Descripción',
+                    'observaciones': 'Observaciones',
+        }
+        widgets = {
+            'articulo': forms.Select(attrs={'style': 'pointer-events: none;', 'readonly' : 'readonly'}),
+        }

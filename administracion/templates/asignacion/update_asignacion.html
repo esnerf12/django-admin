@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="content-form">
+        <div>
+            <form method="POST">
+                <h1>Reasignar articulo: {{ asignacion.id }}</h1>
+        
+                {% csrf_token %}
+                
+                <div class="form-control">
+                    {{ form }}
+                </div>
+
+                <div class="div-button">
+                    <button>
+                        Actualizar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

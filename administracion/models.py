@@ -16,6 +16,14 @@ class TipoArticulo(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Sede(models.Model):
+    nombre = models.CharField(max_length=255)
+    direccion = models.TextField(max_length=255)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.nombre
 
 class Articulo(models.Model):
     descripcion = models.TextField(max_length=255)
@@ -34,7 +42,7 @@ class Articulo(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.descripcion
+        return self.descripcion + ' - ' + str(self.marca) + ' - ' + str(self.modelo)
     
 class TipoAveria(models.Model):
     nombre = models.CharField(max_length=255)
@@ -64,6 +72,7 @@ class Averia(models.Model):
     
 class Asignacion(models.Model):
     articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE)
+    sede = models.ForeignKey(Sede, on_delete=models.CASCADE)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
     descripcion = models.TextField(max_length=255)
