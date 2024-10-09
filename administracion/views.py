@@ -565,11 +565,10 @@ class SearchAsignacion(ListView):
                 return Asignacion.objects.filter(articulo=articulo)
             except Articulo.DoesNotExist:
                 articulo = None
-        # Verificar ----
         if option == 'sede':
             try:
-                sede = Sede.objects.get(nombre__icontains=query)
-                return Asignacion.objects.filter(sede=sede.id)
+                sede = Sede.objects.filter(nombre__icontains=query).values_list('id', flat=True).first()
+                return Asignacion.objects.filter(sede=sede)
             except Sede.DoesNotExist:
                 sede = None
         if option == 'departamento':
