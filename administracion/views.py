@@ -634,8 +634,12 @@ class SearchCompra(ListView):
     def get_queryset(self):
         option = self.request.GET.get('option')
         query = self.request.GET.get('q')
-        #if option == 'articulo':
-            #return Compra.objects.filter(articulo__icontains=query)
+        if option == 'articulo':
+            try:
+                articulo = Articulo.objects.filter(descripcion__icontains=query).values_list('id', flat=True).first()
+                return Compra.objects.filter(articulo=articulo)
+            except Articulo.DoesNotExist:
+                articulo = None
         if option == 'n_orden':
             return Compra.objects.filter(n_orden__icontains=query)
         if option == 'valor_bs':
