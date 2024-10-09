@@ -103,7 +103,7 @@ def create_consumible(request):
         
 def update_consumible(request, consumible_id):
     if request.method == 'GET':
-        consumible = get_object_or_404(Articulo, pk=consumible_id, user=request.user)
+        consumible = get_object_or_404(Articulo, pk=consumible_id)
         form = ConsumibleForm(instance=consumible)
         return render(request, 'consumible/update_consumible.html', {
             'consumible': consumible,
@@ -111,7 +111,7 @@ def update_consumible(request, consumible_id):
         })
     else:
         try:
-            consumible = get_object_or_404(Articulo, pk=consumible_id, user=request.user)
+            consumible = get_object_or_404(Articulo, pk=consumible_id)
             form = ConsumibleForm(request.POST, instance=consumible)
             form.save()
             return redirect('consumible')
@@ -123,7 +123,7 @@ def update_consumible(request, consumible_id):
             })
         
 def delete_consumible(request, consumible_id):
-    consumible = get_object_or_404(Articulo, pk=consumible_id, user=request.user)
+    consumible = get_object_or_404(Articulo, pk=consumible_id)
     if request.method == 'POST':
         consumible.delete()
         return redirect('consumible')
@@ -161,7 +161,7 @@ def create_mobiliario(request):
         
 def update_mobiliario(request, mobiliario_id):
     if request.method == 'GET':
-        mobiliario = get_object_or_404(Articulo, pk=mobiliario_id, user=request.user)
+        mobiliario = get_object_or_404(Articulo, pk=mobiliario_id)
         form = MobiliarioForm(instance=mobiliario)
         return render(request, 'mobiliario/update_mobiliario.html', {
             'mobiliario': mobiliario,
@@ -169,7 +169,7 @@ def update_mobiliario(request, mobiliario_id):
         })
     else:
         try:
-            mobiliario = get_object_or_404(Articulo, pk=mobiliario_id, user=request.user)
+            mobiliario = get_object_or_404(Articulo, pk=mobiliario_id)
             form = MobiliarioForm(request.POST, instance=mobiliario)
             form.save()
             return redirect('mobiliario')
@@ -181,7 +181,7 @@ def update_mobiliario(request, mobiliario_id):
             })
         
 def delete_mobiliario(request, mobiliario_id):
-    mobiliario = get_object_or_404(Articulo, pk=mobiliario_id, user=request.user)
+    mobiliario = get_object_or_404(Articulo, pk=mobiliario_id)
     if request.method == 'POST':
         mobiliario.delete()
         return redirect('mobiliario')
@@ -219,7 +219,7 @@ def create_vehiculo(request):
         
 def update_vehiculo(request, vehiculo_id):
     if request.method == 'GET':
-        vehiculo = get_object_or_404(Articulo, pk=vehiculo_id, user=request.user)
+        vehiculo = get_object_or_404(Articulo, pk=vehiculo_id)
         form = VehiculoForm(instance=vehiculo)
         return render(request, 'vehiculo/update_vehiculo.html', {
             'vehiculo': vehiculo,
@@ -227,7 +227,7 @@ def update_vehiculo(request, vehiculo_id):
         })
     else:
         try:
-            vehiculo = get_object_or_404(Articulo, pk=vehiculo_id, user=request.user)
+            vehiculo = get_object_or_404(Articulo, pk=vehiculo_id)
             form = VehiculoForm(request.POST, instance=vehiculo)
             form.save()
             return redirect('vehiculo')
@@ -239,7 +239,7 @@ def update_vehiculo(request, vehiculo_id):
             })
         
 def delete_vehiculo(request, vehiculo_id):
-    vehiculo = get_object_or_404(Articulo, pk=vehiculo_id, user=request.user)
+    vehiculo = get_object_or_404(Articulo, pk=vehiculo_id)
     if request.method == 'POST':
         vehiculo.delete()
         return redirect('vehiculo')
@@ -276,7 +276,7 @@ def create_averia(request):
         
 def update_averia(request, averia_id):
     if request.method == 'GET':
-        averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+        averia = get_object_or_404(Averia, pk=averia_id)
         form = AveriaForm(instance=averia)
         return render(request, 'averia/update_averia.html', {
             'averia': averia,
@@ -284,7 +284,7 @@ def update_averia(request, averia_id):
         })
     else:
         try:
-            averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+            averia = get_object_or_404(Averia, pk=averia_id)
             form = AveriaForm(request.POST, instance=averia)
             form.save()
             return redirect('averia')
@@ -296,7 +296,7 @@ def update_averia(request, averia_id):
             })
         
 def delete_averia(request, averia_id):
-    averia = get_object_or_404(Averia, pk=averia_id, user=request.user)
+    averia = get_object_or_404(Averia, pk=averia_id)
     if request.method == 'POST':
         averia.delete()
         return redirect('averia')
@@ -340,7 +340,7 @@ def create_compra(request):
         
 def update_compra(request, compra_id):
     if request.method == 'GET':
-        compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+        compra = get_object_or_404(Compra, pk=compra_id)
         form = CompraForm(instance=compra)
         return render(request, 'compra/update_compra.html', {
             'compra': compra,
@@ -348,7 +348,7 @@ def update_compra(request, compra_id):
         })
     else:
         try:
-            compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+            compra = get_object_or_404(Compra, pk=compra_id)
             form = CompraForm(request.POST, instance=compra)
             form.save()
             return redirect('compra')
@@ -360,7 +360,7 @@ def update_compra(request, compra_id):
             })
         
 def delete_compra(request, compra_id):
-    compra = get_object_or_404(Compra, pk=compra_id, user=request.user)
+    compra = get_object_or_404(Compra, pk=compra_id)
     if request.method == 'POST':
         compra.delete()
         return redirect('compra')
@@ -400,7 +400,7 @@ def create_asignacion(request):
 
 def update_asignacion(request, asignacion_id):
     if request.method == 'GET':
-        asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+        asignacion = get_object_or_404(Asignacion, pk=asignacion_id)
         form = AsignacionUpdateForm(instance=asignacion)
         return render(request, 'asignacion/update_asignacion.html', {
             'asignacion': asignacion,
@@ -408,7 +408,7 @@ def update_asignacion(request, asignacion_id):
         })
     else:
         try:
-            asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+            asignacion = get_object_or_404(Asignacion, pk=asignacion_id)
             form = AsignacionUpdateForm(request.POST, instance=asignacion)
             form.save()
             return redirect('asignacion')
@@ -420,7 +420,7 @@ def update_asignacion(request, asignacion_id):
             })
             
 def delete_asignacion(request, asignacion_id):
-    asignacion = get_object_or_404(Asignacion, pk=asignacion_id, user=request.user)
+    asignacion = get_object_or_404(Asignacion, pk=asignacion_id)
     if request.method == 'POST':
         asignacion.delete()
         return redirect('asignacion')
@@ -559,14 +559,13 @@ class SearchAsignacion(ListView):
     def get_queryset(self):
         option = self.request.GET.get('option')
         query = self.request.GET.get('q')
-        # Verificar
         if option == 'articulo':
             try:
                 articulo = Articulo.objects.filter(descripcion__icontains=query, asignado=True).values_list('id', flat=True).first()
                 return Asignacion.objects.filter(articulo=articulo, user=self.request.user)
             except Articulo.DoesNotExist:
                 articulo = None
-        # -----
+        # Verificar ----
         if option == 'sede':
             try:
                 sede = Sede.objects.get(nombre__icontains=query)
